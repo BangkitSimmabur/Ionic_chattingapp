@@ -1,7 +1,4 @@
-# Project Title
-REDU
-
-This is a project of Glints Academy done in a group. This is a React Native app developed to give user information on recreational places. User can post their own stories visiting other places.
+# THIS IS A SIMPLE CHATTING APPS
 
 ## Getting Started
 
