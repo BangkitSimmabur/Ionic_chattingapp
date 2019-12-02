@@ -1,11 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-
-import { IonicModule } from '@ionic/angular';
-
 import { TabsPage } from './tabs.page';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 const routes: Routes = [
   {
@@ -14,11 +10,11 @@ const routes: Routes = [
     children: [
       {
         path: 'friendlist',
-        loadChildren: '../friendlist/friendlist.module#FriendlistPageModule'
+        loadChildren: () => import('../friendlist/friendlist.module').then(m => m.FriendlistPageModule)
       },
       {
         path: 'chatlist',
-        loadChildren: '../chatlist/chatlist.module#ChatlistPageModule'
+        loadChildren: () => import('../chatlist/chatlist.module').then(m => m.ChatlistPageModule)
       },
     ]
   },
@@ -31,9 +27,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ],
   declarations: [TabsPage]

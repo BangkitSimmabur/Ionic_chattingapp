@@ -50,7 +50,7 @@ export class ChatPage implements OnInit {
     // this.content.scrollToBottom(200);
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
   sendMessage() {

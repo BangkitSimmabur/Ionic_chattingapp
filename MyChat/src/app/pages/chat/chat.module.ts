@@ -1,20 +1,21 @@
 import { AutosizeModule } from 'ngx-autosize';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
-
-import { ChatPageRoutingModule } from './chat-routing.module';
-
 import { ChatPage } from './chat.page';
+import { Routes, RouterModule } from '@angular/router';
+import { SharedModule } from 'src/app/shared/shared.module';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: ChatPage
+  }
+];
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    ChatPageRoutingModule,
-    AutosizeModule
+    SharedModule,
+    RouterModule.forChild(routes),
+    AutosizeModule,
   ],
   declarations: [ChatPage]
 })
