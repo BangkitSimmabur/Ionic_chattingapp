@@ -26,6 +26,12 @@ or
 ```ionic lab``` 
 to run the app on your browser
 
+### Important
+
+run the app on the browser with web securit/ cors disabled.
+example on linux using chrome: 
+```google-chrome  --user-data-dir=”/var/tmp/Chrome” --disable-web-security```
+
 ## Contributing
 
 * [Bangkit Simmabur](#) - Ionic
