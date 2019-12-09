@@ -10,11 +10,10 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class TabsPage implements OnInit {
 
-  constructor(public storage: Storage, public location: Location, public userService: UserService) { }
+  constructor(public storage: Storage, public userService: UserService) { }
 
   logOut() {
     this.storage.clear();
-    this.location.back();
   }
   ngOnInit() {
   }

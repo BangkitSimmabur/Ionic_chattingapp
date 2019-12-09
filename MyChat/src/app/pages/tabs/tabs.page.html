@@ -1,7 +1,8 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons class="ion-padding" size="large" slot="start" expand="block" (click)="logOut()">
-Log Out    </ion-buttons>
+    <ion-button slot="start" routerLink="/home" (click)="logOut()" routerDirection="backward">
+      <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+    </ion-button>
     <ion-title>MyChat</ion-title>
   </ion-toolbar>
 </ion-header>

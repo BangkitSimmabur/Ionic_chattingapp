@@ -6,6 +6,9 @@
     <ion-title>
       {{name}}
     </ion-title>
+    <ion-button slot="end" routerLink="/add-member/{{id}}">
+      <ion-icon slot="icon-only" name="add"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -38,7 +41,8 @@
         <textarea maxRows="3" autosize [(ngModel)]="newMsg" class="newMsgInput"></textarea>
       </ion-col>
       <ion-col>
-        <ion-button size="3" expand="block" fill="clear" color="primary" [disabled]="newMsg === ''" class="newMsgButton" (click)="sendMessage()">
+        <ion-button size="3" expand="block" fill="clear" color="primary" [disabled]="newMsg === ''" class="newMsgButton"
+          (click)="sendMessage()">
           <ion-icon slot="icon-only" name="ios-send"></ion-icon>
         </ion-button>
       </ion-col>

@@ -79,14 +79,6 @@ export class ChatPage implements OnInit {
     });
   }
 
-  // sendMessage() {
-  //   this.messages.push({
-  //     user: 'bangkit',
-  //     createdAt: new Date().getTime(),
-  //     msg: this.newMsg,
-  //   });
-  //   this.content.scrollToBottom(200);
-  // }
   sendMessage() {
     this.chatService.sendMessages(this.id, this.newMsg, this.token).subscribe((response) => {
       console.log(response);

@@ -15,8 +15,12 @@ export class LoginPage implements OnInit {
   userData = {};
   items = {};
   dataFromService: any = '';
-  constructor(public userService: UserService, public storage: Storage, public router: Router, public toastController: ToastController) {
+  constructor(private userService: UserService,
+              private storage: Storage,
+              private router: Router,
+              private toastController: ToastController) {
   }
+  
   async presentToast() {
     const toast = await this.toastController.create({
       message: 'Welcome.',

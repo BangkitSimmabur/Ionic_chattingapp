@@ -1,6 +1,8 @@
 import { Storage } from '@ionic/storage';
 import { Component, OnInit } from '@angular/core';
 import { RoomService } from 'src/app/services/room.service';
+import { Location } from '@angular/common';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-create-room',
@@ -13,7 +15,10 @@ export class CreateRoomPage implements OnInit {
   userId: number;
   room: any;
 
-  constructor(public storage: Storage, public roomService: RoomService) { }
+  constructor(private storage: Storage,
+              private roomService: RoomService,
+              private location: Location,
+              private toastController: ToastController) { }
 
   ngOnInit() {
     this.storage.get('token').then((res) => {
@@ -24,9 +29,18 @@ export class CreateRoomPage implements OnInit {
     });
   }
 
-  tes() {
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Room ' + this.name + 'created.',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  createRoom() {
     this.roomService.create(this.name, this.token).subscribe((response) => {
-      console.log(response);
+      this.location.back();
+      this.presentToast();
     });
   }
 
