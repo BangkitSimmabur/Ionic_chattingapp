@@ -7,7 +7,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 export class RoomService {
   constructor(private http: HttpClient, ) { }
 
-  private url = 'http://35.224.16.247/api/';
+  private url = '/api/';
 
 
   create(data, token) {

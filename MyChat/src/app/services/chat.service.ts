@@ -8,7 +8,7 @@ export class ChatService {
 
   constructor(private http: HttpClient, ) { }
 
-  private url = 'http://35.224.16.247/api/';
+  private url = '/api/';
 
   getMessages(id, token) {
     return this.http.get(this.url + 'messages/' + id,

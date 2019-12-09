@@ -8,7 +8,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 export class UserService {
   constructor(public http: HttpClient, ) { }
 
-  url = 'http://35.224.16.247/api/';
+  url = '/api/';
 
   login(data) {
     return this.http.post(this.url + 'login', data,
