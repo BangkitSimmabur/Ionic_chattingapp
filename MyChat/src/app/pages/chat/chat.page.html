@@ -4,7 +4,7 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>
-      {{friendUser}}
+      {{name}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,19 +12,19 @@
 <ion-content>
   <ion-grid>
     <ion-row *ngFor="let message of messages">
-      <ion-col size="9" *ngIf="currentUser !==message.user" class="message otherUserMessage">
-        <b> {{ message.user }} </b> <br>
-        <span> {{ message.msg }} </span>
+      <ion-col size="9" *ngIf="userData.name !==message.sender.name" class="message otherUserMessage">
+        <b> {{ message.sender.name }} </b> <br>
+        <span> {{ message.content }} </span>
         <div class="time" class="ion-text-right">
-          <br> {{message.createdAt | date:'short' }}
+          <br> {{message.created_at | date:'short' }}
         </div>
       </ion-col>
 
-      <ion-col offset="3" size="9" *ngIf="currentUser ===message.user" class="message currentUserMessage">
-        <b> {{ message.user }} </b> <br>
-        <span> {{ message.msg }} </span>
+      <ion-col offset="3" size="9" *ngIf="userData.name ===message.sender.name" class="message currentUserMessage">
+        <b> {{ message.sender.name }} </b> <br>
+        <span> {{ message.content }} </span>
         <div class="time" class="ion-text-right">
-          <br> {{message.createdAt | date:'short' }}
+          <br> {{message.created_at | date:'short' }}
         </div>
       </ion-col>
     </ion-row>

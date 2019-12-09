@@ -25,12 +25,8 @@ export class CreateRoomPage implements OnInit {
   }
 
   tes() {
-    console.log(this.token);
     this.roomService.create(this.name, this.token).subscribe((response) => {
-      this.room = response;
-      this.roomService.addMember(this.room.id, this.userId, this.token).subscribe((res) => {
-        console.log(res);
-      });
+      console.log(response);
     });
   }
 

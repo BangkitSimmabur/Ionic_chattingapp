@@ -5,9 +5,9 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class RoomService {
-  constructor(public http: HttpClient, ) { }
+  constructor(private http: HttpClient, ) { }
 
-  url = 'http://35.224.16.247/api/';
+  private url = 'http://35.224.16.247/api/';
 
 
   create(data, token) {
@@ -19,8 +19,19 @@ export class RoomService {
         })
       });
   }
+
+  getRoom(token) {
+    return this.http.get(this.url + 'rooms',
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token
+        })
+      });
+  }
+
   addMember(data, data2, token) {
-    return this.http.post(this.url + 'members', { room_id: data, user_id: data2}, {
+    return this.http.post(this.url + 'members', { room_id: data, user_id: data2 }, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + token

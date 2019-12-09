@@ -3,13 +3,10 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-  <ion-list *ngFor="let item of items">
-    <ion-item routerLink="/chat">
-      <ion-thumbnail slot="start">
-        <ion-img class="image" src={{item.img}}></ion-img>
-      </ion-thumbnail>
+  <ion-list *ngFor="let item of rooms">
+    <ion-item routerLink="/chat/{{item.id}}/{{item.room_name}}">
       <p>
-        {{item.user}}
+        {{item.room_name}} 
       </p>
     </ion-item>
   </ion-list>

@@ -5,7 +5,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
   {
-    path: 'chat',
+    path: 'chat/:id/:name',
     loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule)
   },
   { path: 'tabs',

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RoomService } from 'src/app/services/room.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-chatlist',
@@ -6,24 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chatlist.page.scss'],
 })
 export class ChatlistPage implements OnInit {
+  rooms: any;
+  constructor(public roomService: RoomService, public storage: Storage) { }
 
-  items = [
-    {
-      user: 'simmabur',
-      img: 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png',
-    },
-    {
-      user: 'arya',
-      img: 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png',
-    },
-    {
-      user: 'john',
-      img: 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png',
-    },
-  ];
-  constructor() { }
-
+  
   ngOnInit() {
+    this.storage.get('token').then((res) => {
+      this.roomService.getRoom(res).subscribe((response) => {
+        this.rooms = response;
+      });
+    });
   }
 
 }

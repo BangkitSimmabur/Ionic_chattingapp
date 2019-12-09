@@ -1,6 +1,4 @@
-import { Storage } from '@ionic/storage';
 import { Component, OnInit } from '@angular/core';
-import * as jwt_decode from 'jwt-decode';
 import { UserService } from 'src/app/services/user.service';
 
 
@@ -11,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class FriendlistPage implements OnInit {
 
-  constructor(public storage: Storage, public userService: UserService ) { }
+  constructor(public userService: UserService ) { }
 
   users: any;
 
