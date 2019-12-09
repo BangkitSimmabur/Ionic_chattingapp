@@ -8,11 +8,10 @@ export class RoomService {
   constructor(public http: HttpClient, ) { }
 
   url = 'http://35.224.16.247/api/';
-  // http://35.224.16.247/api/members
 
-  // http://35.224.16.247/api/rooms
+
   create(data, token) {
-    return this.http.post(this.url + 'rooms', data,
+    return this.http.post(this.url + 'rooms', { room_name: data },
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
@@ -20,8 +19,12 @@ export class RoomService {
         })
       });
   }
-  addMember(data, token) {
-    return this.http.post(this.url + 'members', data,
-    );
+  addMember(data, data2, token) {
+    return this.http.post(this.url + 'members', { room_id: data, user_id: data2}, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token
+      })
+    });
   }
 }

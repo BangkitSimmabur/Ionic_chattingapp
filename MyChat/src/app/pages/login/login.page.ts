@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {
         token: this.dataFromService,
         userId: decoded.user_id
       };
-      this.storage.set('items', this.items);
+      this.storage.set('token', response);
       this.userService.getUserData(decoded.user_id).subscribe((res) => {
         this.userData = res;
         this.storage.set('userData', this.userData);
