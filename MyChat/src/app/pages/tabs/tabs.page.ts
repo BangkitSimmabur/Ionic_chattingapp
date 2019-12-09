@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Storage } from '@ionic/storage';
+import { Location } from '@angular/common';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-tabs',
@@ -7,8 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabsPage implements OnInit {
 
-  constructor() { }
+  constructor(public storage: Storage, public location: Location, public userService: UserService) { }
 
+  logOut() {
+    this.storage.clear();
+    this.location.back();
+  }
   ngOnInit() {
   }
 

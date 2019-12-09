@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>New Room</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form>
+    <ion-item>
+      <ion-input type="text" class="form-control" placeholder="Room Name" [(ngModel)]="name" name="name">
+      </ion-input>
+    </ion-item>
+    <ion-button class="center" shape="round" size="small" expand="block" fill="clear" color="primary" (click)="tes()">
+      Login
+    </ion-button>
+  </form>
+</ion-content>

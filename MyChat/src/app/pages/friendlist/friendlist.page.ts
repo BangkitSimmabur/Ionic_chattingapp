@@ -1,4 +1,8 @@
+import { Storage } from '@ionic/storage';
 import { Component, OnInit } from '@angular/core';
+import * as jwt_decode from 'jwt-decode';
+import { UserService } from 'src/app/services/user.service';
+
 
 @Component({
   selector: 'app-friendlist',
@@ -6,23 +10,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./friendlist.page.scss'],
 })
 export class FriendlistPage implements OnInit {
-  items = [
-    {
-      user: 'simmabur',
-      img: 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png',
-    },
-    {
-      user: 'arya',
-      img: 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png',
-    },
-    {
-      user: 'john',
-      img: 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png',
-    },
-  ];
-  constructor() { }
+
+  constructor(public storage: Storage, public userService: UserService ) { }
+
+  users: any;
 
   ngOnInit() {
+    this.userService.getUser().subscribe((response) => {
+      this.users = response;
+    });
   }
 
 }

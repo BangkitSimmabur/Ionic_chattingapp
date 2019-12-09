@@ -1,19 +1,21 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Chat List</ion-title>
+  <ion-toolbar>
   </ion-toolbar>
 </ion-header>
-
 <ion-content class="ion-padding">
-    <ion-list *ngFor="let item of items">
-      <ion-item routerLink="/chat">
-        <ion-thumbnail slot="start">
-          <ion-img class="image" src={{item.img}}></ion-img>
-        </ion-thumbnail>
-        <p>
-          {{item.user}}
-        </p>
-      </ion-item>
-    </ion-list>
-  </ion-content>
-  
+  <ion-list *ngFor="let item of items">
+    <ion-item routerLink="/chat">
+      <ion-thumbnail slot="start">
+        <ion-img class="image" src={{item.img}}></ion-img>
+      </ion-thumbnail>
+      <p>
+        {{item.user}}
+      </p>
+    </ion-item>
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/create-room" >
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

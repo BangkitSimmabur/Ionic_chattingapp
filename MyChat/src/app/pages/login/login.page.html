@@ -4,18 +4,14 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>Login</ion-title>
-    <ion-buttons slot="end" expand="block" routerLink="/register">
-      <p>Register</p>
+    <ion-buttons class="ion-padding" slot="end" expand="block" routerLink="/register">
+      Register
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <form>
-    <ion-item>
-      <ion-input type="text" class="form-control" placeholder="name" [(ngModel)]="userData.name" name="name">
-      </ion-input>
-    </ion-item>
     <ion-item>
       <ion-input type="email" class="form-control" placeholder="email" [(ngModel)]="userData.email" name="email">
       </ion-input>

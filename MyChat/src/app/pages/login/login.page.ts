@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
+import { Storage } from '@ionic/storage';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
+import * as jwt_decode from 'jwt-decode';
+
 
 @Component({
   selector: 'app-login',
@@ -8,15 +13,33 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginPage implements OnInit {
   userData = {};
+  items = {};
   dataFromService: any = '';
-  constructor(public userService: UserService) {
-
+  constructor(public userService: UserService, public storage: Storage, public router: Router, public toastController: ToastController) {
   }
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Welcome.',
+      duration: 2000
+    });
+    toast.present();
+  }
+
   login() {
     this.userService.login(this.userData).subscribe((response) => {
       this.dataFromService = JSON.stringify(response);
-      console.log(this.dataFromService);
-      console.log(response);
+      const decoded = jwt_decode(this.dataFromService);
+      this.items = {
+        token: this.dataFromService,
+        userId: decoded.user_id
+      };
+      this.storage.set('items', this.items);
+      this.userService.getUserData(decoded.user_id).subscribe((res) => {
+        this.userData = res;
+        this.storage.set('userData', this.userData);
+      });
+      this.router.navigate(['/tabs']);
+      this.presentToast();
     });
   }
   ngOnInit() {

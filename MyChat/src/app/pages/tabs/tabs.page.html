@@ -1,3 +1,11 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons class="ion-padding" size="large" slot="start" expand="block" (click)="logOut()">
+Log Out    </ion-buttons>
+    <ion-title>MyChat</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-tabs>
 
   <ion-tab-bar slot="bottom">
@@ -9,7 +17,7 @@
 
     <ion-tab-button tab="chatlist">
       <ion-icon name="list-box"></ion-icon>
-      <ion-label>History</ion-label>
+      <ion-label>Chat Room</ion-label>
     </ion-tab-button>
 
   </ion-tab-bar>
