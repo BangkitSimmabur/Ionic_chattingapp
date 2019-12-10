@@ -7,9 +7,10 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { AuthGuardService } from './auth/auth-guard.service';
+import { InterceptorService } from './interceptor/interceptor.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +21,8 @@ import { AuthGuardService } from './auth/auth-guard.service';
     SplashScreen,
     AuthGuardService,
     AuthenticationService,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent]
 })

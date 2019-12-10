@@ -1,4 +1,3 @@
-import { Storage } from '@ionic/storage';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute } from '@angular/router';
@@ -12,10 +11,8 @@ import { ToastController } from '@ionic/angular';
 })
 export class AddMemberPage implements OnInit {
   private roomId: number;
-  private token: string;
   constructor(private userService: UserService,
               private roomService: RoomService,
-              private storage: Storage,
               private activatedRoute: ActivatedRoute,
               private toastController: ToastController) {}
 
@@ -29,7 +26,7 @@ export class AddMemberPage implements OnInit {
     toast.present();
   }
   addMember(memberId) {
-    this.roomService.addMember(this.roomId, memberId, this.token).subscribe((response) => {
+    this.roomService.addMember(this.roomId, memberId).subscribe((response) => {
       this.presentToast();
     });
   }
@@ -40,9 +37,6 @@ export class AddMemberPage implements OnInit {
     });
     // tslint:disable-next-line: radix
     this.roomId = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
-    this.storage.get('token').then((res) => {
-      this.token = res;
-    });
   }
 
 }

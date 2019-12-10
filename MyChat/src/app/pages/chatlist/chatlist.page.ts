@@ -11,12 +11,9 @@ export class ChatlistPage implements OnInit {
   rooms: any;
   constructor(public roomService: RoomService, public storage: Storage) { }
 
-  
   ngOnInit() {
-    this.storage.get('token').then((res) => {
-      this.roomService.getRoom(res).subscribe((response) => {
-        this.rooms = response;
-      });
+    this.roomService.getRoom().subscribe((response) => {
+      this.rooms = response;
     });
   }
 

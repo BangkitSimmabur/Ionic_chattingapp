@@ -17,10 +17,10 @@ export class LoginPage implements OnInit {
   items = {};
   dataFromService: any = '';
   constructor(private userService: UserService,
-    private storage: Storage,
-    public router: Router,
-    private toastController: ToastController,
-    private authenticationService: AuthenticationService) {
+              private storage: Storage,
+              public router: Router,
+              private toastController: ToastController,
+              private authenticationService: AuthenticationService) {
   }
 
   async presentToast() {

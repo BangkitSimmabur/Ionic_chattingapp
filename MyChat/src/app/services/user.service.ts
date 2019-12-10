@@ -11,15 +11,12 @@ export class UserService {
   url = '/api/';
 
   register(data) {
-    return this.http.post(this.url + 'users', data,
-      { headers: new HttpHeaders({ 'content-Type': 'application/json' }) });
+    return this.http.post(this.url + 'users', data);
   }
   getUser() {
-    return this.http.get(this.url + 'users',
-      { headers: new HttpHeaders({ 'content-Type': 'application/json' }) });
+    return this.http.get(this.url + 'users');
   }
   getUserData(id) {
-    return this.http.get(this.url + 'users/' + id,
-      { headers: new HttpHeaders({ 'content-Type': 'application/json' }) });
+    return this.http.get(this.url + 'users/' + id);
   }
 }

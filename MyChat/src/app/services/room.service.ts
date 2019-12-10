@@ -10,32 +10,15 @@ export class RoomService {
   private url = '/api/';
 
 
-  create(data, token) {
-    return this.http.post(this.url + 'rooms', { room_name: data },
-      {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + token
-        })
-      });
+  create(data) {
+    return this.http.post(this.url + 'rooms', { room_name: data });
   }
 
-  getRoom(token) {
-    return this.http.get(this.url + 'rooms',
-      {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + token
-        })
-      });
+  getRoom() {
+    return this.http.get(this.url + 'rooms');
   }
 
-  addMember(data, data2, token) {
-    return this.http.post(this.url + 'members', { room_id: data, user_id: data2 }, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + token
-      })
-    });
+  addMember(data, data2) {
+    return this.http.post(this.url + 'members', { room_id: data, user_id: data2 });
   }
 }

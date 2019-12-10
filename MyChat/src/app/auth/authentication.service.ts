@@ -41,8 +41,7 @@ export class AuthenticationService {
   }
 
   getLogin(data) {
-    return this.http.post(this.url + 'login', data,
-      { headers: new HttpHeaders({ 'content-Type': 'application/json' }) });
+    return this.http.post(this.url + 'login', data);
   }
 
   login(data) {
@@ -64,6 +63,10 @@ export class AuthenticationService {
       this.router.navigate(['home']);
       this.authState.next(false);
     });
+  }
+
+  getToken() {
+    this.storage.get('token');
   }
 
   isAuthenticated() {

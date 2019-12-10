@@ -10,22 +10,11 @@ export class ChatService {
 
   private url = '/api/';
 
-  getMessages(id, token) {
-    return this.http.get(this.url + 'messages/' + id,
-      {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + token
-        })
-      });
+  getMessages(id) {
+    return this.http.get(this.url + 'messages/' + id);
   }
 
-  sendMessages(data, data2, token) {
-    return this.http.post(this.url + 'messages', { room_id: data, content: data2 }, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + token
-      })
-    });
+  sendMessages(data, data2) {
+    return this.http.post(this.url + 'messages', { room_id: data, content: data2 });
   }
 }

@@ -47,7 +47,6 @@ export class ChatPage implements OnInit {
   private name: string;
   private id: number;
   private messages: any;
-  private token: string;
   private userData: any;
 
 
@@ -58,7 +57,7 @@ export class ChatPage implements OnInit {
   }
 
   getMsg() {
-    this.chatService.getMessages(this.id, this.token).subscribe((res) => {
+    this.chatService.getMessages(this.id).subscribe((res) => {
       this.messages = res;
       console.log(this.messages);
     });
@@ -73,14 +72,11 @@ export class ChatPage implements OnInit {
     });
     // tslint:disable-next-line: radix
     this.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
-    this.storage.get('token').then((res) => {
-      this.token = res;
-      this.getMsg();
-    });
+    this.getMsg();
   }
 
   sendMessage() {
-    this.chatService.sendMessages(this.id, this.newMsg, this.token).subscribe((response) => {
+    this.chatService.sendMessages(this.id, this.newMsg).subscribe((response) => {
       console.log(response);
       this.getMsg();
     });

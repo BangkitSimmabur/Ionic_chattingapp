@@ -10,7 +10,6 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./create-room.page.scss'],
 })
 export class CreateRoomPage implements OnInit {
-  token = '';
   name = '';
   userId: number;
   room: any;
@@ -21,9 +20,6 @@ export class CreateRoomPage implements OnInit {
               private toastController: ToastController) { }
 
   ngOnInit() {
-    this.storage.get('token').then((res) => {
-      this.token = res;
-    });
     this.storage.get('userData').then((val) => {
       this.userId = val.id;
     });
@@ -38,7 +34,7 @@ export class CreateRoomPage implements OnInit {
   }
 
   createRoom() {
-    this.roomService.create(this.name, this.token).subscribe((response) => {
+    this.roomService.create(this.name).subscribe((response) => {
       this.location.back();
       this.presentToast();
     });
