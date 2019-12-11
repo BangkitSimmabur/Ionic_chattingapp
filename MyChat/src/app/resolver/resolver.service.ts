@@ -8,15 +8,12 @@ import { ChatService } from '../services/chat.service';
 })
 export class ResolverService implements Resolve<any> {
 
-  constructor(
-    private http: HttpClient, private chatService: ChatService
+  constructor( private chatService: ChatService
   ) { }
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const id = route.paramMap.get('id');
 
-    const url = '/api/';
-
-    return this.http.get( url + 'messages/' + id);
+    return this.chatService.getMessages(id);
 
   }
 }
