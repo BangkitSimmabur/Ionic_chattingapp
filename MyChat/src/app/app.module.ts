@@ -11,6 +11,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { InterceptorService } from './interceptor/interceptor.service';
+import { ResolverService } from './resolver/resolver.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { InterceptorService } from './interceptor/interceptor.service';
     SplashScreen,
     AuthGuardService,
     AuthenticationService,
+    ResolverService,
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],

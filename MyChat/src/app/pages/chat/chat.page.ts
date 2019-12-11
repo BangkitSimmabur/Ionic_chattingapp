@@ -44,10 +44,10 @@ export class ChatPage implements OnInit {
   //   },
   // ];
 
-  private name: string;
+  private room: string;
   private id: number;
-  private messages: any;
-  private userData: any;
+  private msg: any;
+  private user: string;
 
 
   newMsg = '';
@@ -58,27 +58,25 @@ export class ChatPage implements OnInit {
 
   getMsg() {
     this.chatService.getMessages(this.id).subscribe((res) => {
-      this.messages = res;
-      console.log(this.messages);
+      this.msg = res;
+      console.log(this.msg);
     });
   }
 
 
   ngOnInit() {
-    this.name = this.activatedRoute.snapshot.paramMap.get('name');
-    this.storage.get('userData').then((response) => {
-      this.userData = response;
-      console.log(this.userData);
-    });
+    this.room = this.activatedRoute.snapshot.paramMap.get('room');
+    this.user = this.activatedRoute.snapshot.paramMap.get('user');
+    this.msg = this.activatedRoute.snapshot.data.messages;
     // tslint:disable-next-line: radix
     this.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
-    this.getMsg();
+    this.content.scrollToBottom(200);
   }
 
   sendMessage() {
-    this.chatService.sendMessages(this.id, this.newMsg).subscribe((response) => {
-      console.log(response);
+    this.chatService.sendMessages(this.id, this.newMsg).subscribe(() => {
       this.getMsg();
     });
+    this.content.scrollToBottom(200);
   }
 }

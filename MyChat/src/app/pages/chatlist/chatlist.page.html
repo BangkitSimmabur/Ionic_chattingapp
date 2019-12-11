@@ -5,7 +5,7 @@
 
 <ion-content class="ion-padding">
   <ion-list *ngFor="let item of rooms">
-    <ion-item routerLink="/chat/{{item.id}}/{{item.room_name}}">
+    <ion-item routerLink="/chat/{{item.id}}/{{item.room_name}}/{{user}}">
       <p>
         {{item.room_name}} 
       </p>

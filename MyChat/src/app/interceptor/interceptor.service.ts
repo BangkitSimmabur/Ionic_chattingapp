@@ -47,26 +47,24 @@ export class InterceptorService implements HttpInterceptor {
               }
               return event;
             }),
-            catchError((error: HttpErrorResponse) => {
-              const status = error.status;
-              const reason = error && error.error.reason ? error.error.reason : '';
-
-              this.presentToast(status);
-              return throwError(error);
-            })
+            // catchError((error: HttpErrorResponse) => {
+            //   const status = error.status;
+            //   const reason = error && error.error.reason ? error.error.reason : '';
+            //   return throwError(error);
+            // })
           );
         })
       );
   }
 
-  async presentToast(msg) {
-    const toast = await this.toastController.create({
-      message: msg,
-      duration: 2000,
-      position: 'top'
-    });
-    toast.present();
-  }
+  // async presentToast(msg) {
+  //   const toast = await this.toastController.create({
+  //     message: msg,
+  //     duration: 2000,
+  //     position: 'top'
+  //   });
+  //   toast.present();
+  // }
   //   if (token) {
   //     request = request.clone({
   //       setHeaders: {

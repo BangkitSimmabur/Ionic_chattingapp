@@ -7,10 +7,10 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomePageModule) },
   {
-    path: 'chat/:id/:name',
-    // resolve: {
-    //   messages: ResolverService
-    // },
+    path: 'chat/:id/:room/:user',
+    resolve: {
+      messages: ResolverService
+    },
     loadChildren: () => import('./pages/chat/chat.module').then(m => m.ChatPageModule),
     canActivate: [AuthGuardService],
   },
