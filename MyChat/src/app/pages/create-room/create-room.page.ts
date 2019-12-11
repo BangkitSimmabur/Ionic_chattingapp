@@ -25,19 +25,27 @@ export class CreateRoomPage implements OnInit {
     });
   }
 
-  async presentToast() {
+  async presentToast(msg) {
     const toast = await this.toastController.create({
-      message: 'Room ' + this.name + 'created.',
+      message: msg,
       duration: 2000
     });
     toast.present();
   }
 
   createRoom() {
-    this.roomService.create(this.name).subscribe((response) => {
-      this.location.back();
-      this.presentToast();
-    });
+    if (this.name === '') {
+
+      this.presentToast('please fill the room name');
+    } else {
+      this.roomService.create(this.name).subscribe((response) => {
+        this.location.back();
+        if (response) {
+          this.presentToast('Room ' + this.name + ' created');
+        }
+      });
+    }
+
   }
 
 }
