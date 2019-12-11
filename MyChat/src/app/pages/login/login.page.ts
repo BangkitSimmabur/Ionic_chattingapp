@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {
 
   login() {
     this.authenticationService.login(this.userData);
-    this.presentToast();
+    // this.presentToast();
   }
   ngOnInit() {
   }

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { Platform, ToastController } from '@ionic/angular';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpEvent, HttpResponse } from '@angular/common/http';
 import * as jwt_decode from 'jwt-decode';
 import { UserService } from '../services/user.service';
+import { catchError, map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -41,9 +42,24 @@ export class AuthenticationService {
   }
 
   getLogin(data) {
-    return this.http.post(this.url + 'login', data);
+    return this.http.post(this.url + 'login', data).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 400) {
+          this.presentToast('Wrong combination of email and password');
+        }
+        return throwError(error);
+      })
+    );
   }
 
+  async presentToast(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000,
+      position: 'bottom'
+    });
+    toast.present();
+  }
   login(data) {
     this.getLogin(data).subscribe((response) => {
       this.dataFromService = JSON.stringify(response);
@@ -53,9 +69,11 @@ export class AuthenticationService {
         this.userData = res;
         this.storage.set('userData', this.userData);
       });
-      this.router.navigate(['/tabs']);
+      if (response) {
+        this.presentToast('Login Success');
+        this.authState.next(true);
+      }
     });
-    this.authState.next(true);
   }
 
   logout() {

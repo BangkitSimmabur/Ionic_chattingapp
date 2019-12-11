@@ -38,77 +38,11 @@ export class InterceptorService implements HttpInterceptor {
 
           return next.handle(request).pipe(
             map((event: HttpEvent<any>) => {
-              if (event instanceof HttpResponse) {
-                // do nothing for now
-              }
               return event;
             }),
-            // catchError((error: HttpErrorResponse) => {
-            //   const status = error.status;
-            //   const reason = error && error.error.reason ? error.error.reason : '';
-            //   return throwError(error);
-            // })
           );
         })
       );
   }
-
-  // async presentToast(msg) {
-  //   const toast = await this.toastController.create({
-  //     message: msg,
-  //     duration: 2000,
-  //     position: 'top'
-  //   });
-  //   toast.present();
-  // }
-  //   if (token) {
-  //     request = request.clone({
-  //       setHeaders: {
-  //         Authorization: `Bearer ${token}`
-  //       }
-  //     });
-  //   }
-
-  //   if (!request.headers.has('Content-Type')) {
-  //     request = request.clone({
-  //       setHeaders: {
-  //         'content-type': 'application/json'
-  //       }
-  //     });
-  //   }
-
-  //   request = request.clone({
-  //     headers: request.headers.set('Accept', 'application/json')
-  //   });
-
-  //   return next.handle(request).pipe(
-  //     map((event: HttpEvent<any>) => {
-  //       if (event instanceof HttpResponse) {
-  //         console.log('event--->>>', event);
-  //       }
-  //       return event;
-  //     }),
-  //     catchError((error: HttpErrorResponse) => {
-  //       if (error.status === 401) {
-  //         if (error.error.success === false) {
-  //           this.presentToast(token);
-  //         } else {
-  //           this.presentToast(token);
-  //         }
-  //       }
-  //       return throwError(error);
-  //     }));
-  // }
-  // async presentToast(msg) {
-  //   const toast = await this.toastController.create({
-  //     message: msg,
-  //     duration: 2000,
-  //     position: 'top'
-  //   });
-  //   toast.present();
-  // }
-  // getToken() {
-  //   return this.storage.get('token');
-  // }
 }
 
