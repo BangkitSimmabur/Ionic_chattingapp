@@ -10,11 +10,11 @@ export class ChatService {
 
   private url = '/api/';
 
-  getMessages(id) {
+  getMessages(id: string | number) {
     return this.http.get(this.url + 'messages/' + id);
   }
 
-  sendMessages(data, data2) {
+  sendMessages(data: number, data2: string) {
     return this.http.post(this.url + 'messages', { room_id: data, content: data2 });
   }
 }

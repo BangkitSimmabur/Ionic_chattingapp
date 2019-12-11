@@ -1,6 +1,5 @@
 import { AuthenticationService } from './../../auth/authentication.service';
 import { Component, OnInit } from '@angular/core';
-import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-tabs',

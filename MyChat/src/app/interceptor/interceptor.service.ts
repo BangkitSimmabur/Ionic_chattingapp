@@ -1,4 +1,3 @@
-import { mergeMap } from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
 import { Injectable } from '@angular/core';
 import {
@@ -6,11 +5,9 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpResponse,
-  HttpErrorResponse
-} from '@angular/common/http';
-import { Observable, throwError, from } from 'rxjs';
-import { map, catchError, switchMap } from 'rxjs/operators';
+  HttpResponse} from '@angular/common/http';
+import { Observable, from } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import {
   Router
 } from '@angular/router';
@@ -24,8 +21,7 @@ const TOKEN_KEY = 'token';
 })
 export class InterceptorService implements HttpInterceptor {
 
-  constructor(private router: Router,
-              public toastController: ToastController, public storage: Storage, ) { }
+  constructor(public toastController: ToastController, public storage: Storage, ) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     return from(this.storage.get(TOKEN_KEY))

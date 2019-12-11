@@ -10,40 +10,6 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['./chat.page.scss'],
 })
 export class ChatPage implements OnInit {
-
-  // messages = [
-  //   {
-  //     user: 'bangkit',
-  //     createdAt: 1574819400000,
-  //     msg: 'Hello there !'
-  //   },
-  //   {
-  //     user: 'simmabur',
-  //     createdAt: 1574819430000,
-  //     msg: 'Hello, what\'s up?'
-  //   },
-  //   {
-  //     user: 'bangkit',
-  //     createdAt: 1574819500000,
-  //     msg: 'Nothing much. You?'
-  //   },
-  //   {
-  //     user: 'bangkit',
-  //     createdAt: 1574819400000,
-  //     msg: 'Hello there !'
-  //   },
-  //   {
-  //     user: 'simmabur',
-  //     createdAt: 1574819430000,
-  //     msg: 'Hello, what\'s up?'
-  //   },
-  //   {
-  //     user: 'bangkit',
-  //     createdAt: 1574819500000,
-  //     msg: 'Nothing much. You?'
-  //   },
-  // ];
-
   private room: string;
   private id: number;
   private msg: any;
