@@ -25,8 +25,8 @@ export class ChatPage implements OnInit {
   getMsg() {
     this.chatService.getMessages(this.id).subscribe((res) => {
       this.msg = res;
-      console.log(this.msg);
     });
+    this.content.scrollToBottom();
   }
 
 
@@ -34,15 +34,12 @@ export class ChatPage implements OnInit {
     this.room = this.activatedRoute.snapshot.paramMap.get('room');
     this.user = this.activatedRoute.snapshot.paramMap.get('user');
     this.msg = this.activatedRoute.snapshot.data.messages;
-    // tslint:disable-next-line: radix
-    this.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
-    this.content.scrollToBottom(200);
+    this.content.scrollToBottom();
   }
 
   sendMessage() {
     this.chatService.sendMessages(this.id, this.newMsg).subscribe(() => {
       this.getMsg();
     });
-    this.content.scrollToBottom(200);
   }
 }

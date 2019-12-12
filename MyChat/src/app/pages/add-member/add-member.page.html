@@ -12,9 +12,11 @@
 <ion-content class="ion-padding">
   <ion-list *ngFor="let item of users">
     <ion-item (click)="addMember(item.id)">
-      <p>
-        {{item.name}}
-      </p>
+      <ion-text>
+        <b>
+          {{item.name}}
+        </b>
+      </ion-text>
     </ion-item>
   </ion-list>
 </ion-content>

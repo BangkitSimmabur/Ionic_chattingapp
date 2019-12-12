@@ -24,7 +24,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule),
   },
   {
-    path: 'userdetail',
+    path: 'userdetail/:id',
     loadChildren: () => import('./pages/userdetail/userdetail.module').then(m => m.UserdetailPageModule),
     canActivate: [AuthGuardService],
   },

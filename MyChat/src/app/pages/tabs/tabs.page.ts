@@ -1,5 +1,6 @@
 import { AuthenticationService } from './../../auth/authentication.service';
 import { Component, OnInit } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-tabs',
@@ -8,12 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabsPage implements OnInit {
 
-  constructor( public authenticationService: AuthenticationService) { }
+  userId: number;
+
+  constructor(public authenticationService: AuthenticationService, private storage: Storage) { }
 
   logOut() {
     this.authenticationService.logout();
   }
   ngOnInit() {
+    this.storage.get('userData').then((response) => {
+      this.userId = response.id;
+    });
   }
 
 }

@@ -5,14 +5,14 @@
 
 <ion-content class="ion-padding">
   <ion-list *ngFor="let item of rooms">
-    <ion-item routerLink="/chat/{{item.id}}/{{item.room_name}}/{{user}}">
-      <p>
-        {{item.room_name}} 
-      </p>
+    <ion-item (click)="presentActionSheet(item.id, item.room_name,user)">
+      <ion-text>
+        <b> {{item.room_name}} </b>
+      </ion-text>
     </ion-item>
   </ion-list>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button routerLink="/create-room" >
+    <ion-fab-button routerLink="/create-room">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

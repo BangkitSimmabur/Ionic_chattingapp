@@ -25,9 +25,12 @@ export class AddMemberPage implements OnInit {
     });
     toast.present();
   }
+
   addMember(memberId) {
     this.roomService.addMember(this.roomId, memberId).subscribe((response) => {
-      this.presentToast();
+      if (response) {
+        this.presentToast();
+      }
     });
   }
 

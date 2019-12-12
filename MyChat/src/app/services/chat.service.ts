@@ -11,7 +11,7 @@ export class ChatService {
   private url = '/api/';
 
   getMessages(id: string | number) {
-    return this.http.get(this.url + 'messages/' + id);
+    return this.http.get<any>(this.url + 'messages/' + id);
   }
 
   sendMessages(data: number, data2: string) {

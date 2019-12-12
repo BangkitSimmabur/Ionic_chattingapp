@@ -5,7 +5,7 @@
 
 <ion-content class="ion-padding">
   <ion-list *ngFor="let item of users">
-    <ion-item routerLink="/userdetail">
+    <ion-item routerLink="/userdetail/{{item.id}}">
       <p>
         {{item.name}}
       </p>
