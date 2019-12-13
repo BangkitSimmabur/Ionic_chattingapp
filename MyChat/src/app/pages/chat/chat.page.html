@@ -20,7 +20,7 @@
         </div>
       </ion-col>
 
-      <ion-col offset="3" size="9" *ngIf="user ===message.sender.name" class="message currentUserMessage">
+      <ion-col offset="3" size="9" *ngIf="user ===message.sender.name" class="message currentUserMessage" (click)="presentActionSheet(message.id)">
         <b> {{ message.sender.name }} </b> <br>
         <span> {{ message.content }} </span>
         <div class="time" class="ion-text-right">

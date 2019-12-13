@@ -12,6 +12,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { InterceptorService } from './interceptor/interceptor.service';
 import { ResolverService } from './resolver/resolver.service';
+import { UserResolverService } from './resolver/user-resolver.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,7 @@ import { ResolverService } from './resolver/resolver.service';
     AuthGuardService,
     AuthenticationService,
     ResolverService,
+    UserResolverService,
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],

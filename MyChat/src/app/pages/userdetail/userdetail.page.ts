@@ -12,14 +12,10 @@ export class UserdetailPage implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService) { }
 
   id: any;
-  users: any;
+  user: any;
 
   ngOnInit() {
-    this.id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.userService.getUserData(this.id).subscribe((response) => {
-      this.users = response;
-      console.log(this.users);
-    });
+    this.user = this.activatedRoute.snapshot.data.user;
   }
 
 }

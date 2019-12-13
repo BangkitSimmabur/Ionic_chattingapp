@@ -18,11 +18,15 @@ export class ChatlistPage implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.roomService.getRoom().subscribe((response) => {
-      this.rooms = response;
-    });
+    this.getRoom();
     this.storage.get('userData').then((response) => {
       this.user = response.name;
+    });
+  }
+
+  getRoom() {
+    this.roomService.getRoom().subscribe((response) => {
+      this.rooms = response;
     });
   }
 
@@ -30,6 +34,14 @@ export class ChatlistPage implements OnInit {
     const actionSheet = await this.actionSheetController.create({
       header: room,
       buttons: [
+        {
+          text: 'Delete',
+          icon: 'trash',
+          role: 'destructive',
+          handler: () => {
+            this.delete(id);
+          }
+        },
         {
           text: 'Go to chat',
           icon: 'chatbubbles',
@@ -52,6 +64,12 @@ export class ChatlistPage implements OnInit {
         }]
     });
     await actionSheet.present();
+  }
+
+  delete(id) {
+    this.roomService.deleteRoom(id).subscribe(() => {
+      this.getRoom();
+    });
   }
 
 }

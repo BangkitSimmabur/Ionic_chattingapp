@@ -48,13 +48,26 @@ export class RoomService {
     toast.present();
   }
 
+  deleteRoom(id) {
+    this.presentLoading();
+    return this.http.delete(this.url + `rooms/${id}`).pipe(
+      tap(() => {
+        this.loading.dismiss();
+      })
+    );
+  }
+
   getRoom() {
+    this.presentLoading();
     return this.http.get(this.url + 'rooms').pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
           this.presentToast('You have to Login first');
         }
         return throwError(error);
+      }),
+      tap(() => {
+        this.loading.dismiss();
       })
     );
   }

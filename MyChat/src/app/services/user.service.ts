@@ -1,7 +1,7 @@
-import { ToastController } from '@ionic/angular';
+import { ToastController, LoadingController } from '@ionic/angular';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
 @Injectable({
@@ -9,9 +9,13 @@ import { throwError } from 'rxjs';
 })
 
 export class UserService {
-  constructor(public http: HttpClient, private toastController: ToastController) { }
+  constructor(public http: HttpClient, private toastController: ToastController, private loadingController: LoadingController) { }
+
+  loading: HTMLIonLoadingElement;
 
   url = '/api/';
+
+
 
   register(data) {
     return this.http.post(this.url + 'users', data).pipe(
@@ -24,11 +28,18 @@ export class UserService {
     );
   }
   getUser() {
-    return this.http.get(this.url + 'users');
+    this.presentLoading();
+    return this.http.get(this.url + 'users').pipe(
+      tap(() => {
+        this.loading.dismiss();
+      })
+    );
   }
+
   getUserData(id) {
     return this.http.get(this.url + 'users/' + id);
   }
+
   async presentToast(msg) {
     const toast = await this.toastController.create({
       message: msg,
@@ -36,5 +47,14 @@ export class UserService {
       position: 'bottom'
     });
     toast.present();
+  }
+
+  presentLoading() {
+    this.loadingController.create({
+      message: 'Please wait'
+    }).then(res => {
+      this.loading = res;
+      this.loading.present();
+    });
   }
 }

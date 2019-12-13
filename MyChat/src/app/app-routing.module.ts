@@ -2,6 +2,7 @@ import { AuthGuardService } from './auth/auth-guard.service';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { ResolverService } from './resolver/resolver.service';
+import { UserResolverService } from './resolver/user-resolver.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -27,6 +28,9 @@ const routes: Routes = [
     path: 'userdetail/:id',
     loadChildren: () => import('./pages/userdetail/userdetail.module').then(m => m.UserdetailPageModule),
     canActivate: [AuthGuardService],
+    resolve: {
+      user: UserResolverService
+    },
   },
   {
     path: 'register',

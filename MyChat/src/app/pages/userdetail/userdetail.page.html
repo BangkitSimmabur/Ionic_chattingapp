@@ -1,16 +1,26 @@
 <ion-header>
-    <ion-toolbar color="primary">
-      <ion-buttons slot="start">
-        <ion-back-button></ion-back-button>
-      </ion-buttons>
-      <ion-title>
-        User Detail
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      User Detail
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content>
-<ion-text color="primary">
- {{users.id}}
-</ion-text>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{user.name}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-text >
+        <h1>Email : {{user.email}} </h1>
+      </ion-text>
+      <ion-text >
+          <h1>Member since : {{user.created_at | date:'short'}} </h1>
+        </ion-text>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
